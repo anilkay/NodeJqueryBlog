@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> Add a Blogpost</h1>
+<form></form>
+    <input type="text" id="header">
+    <input type="text" id="article">
+    <button name="gonder class=send"/>
+    >
+</form>
+</body>
+<script
+        src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $("button").on('click',function () {
+            var head=document.getElementById("header").value;
+            var article=document.getElementById("article").value;
+            var olay=$(".article").text();
+            var baska=$(".header").text();
+            $.post('add',{'header':head,'artik':article},{
+                success: function () {
+                    alert("Added your blog post");
+                }
+            },'json');
+        });
+    });
+</script>
+</html>
