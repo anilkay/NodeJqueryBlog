@@ -28,10 +28,13 @@ app.get('/deneme',function (req,res) {
         olaylar=true;
     });
        res.redirect('/deneme2');
-       // res.send("<html>" + satir + satir.pop() + " " + satir.pop() + satir.length + "</html>");
 });
 app.get('/deneme2',function (req,res) {
-    res.send("A"+hastir+" "+hastir.length+hastir.pop().artik+hastir+""+hastir.pop().artik);
+    var content=" "
+    hastir.forEach(function (item) {
+        content+=" <h1>"+item.id+"   "+item.head+"</h1>"+"<p>"+item.artik+"</p>";
+    })
+    res.send("<html>"+content+"</html>");
 });
 
 app.get('/addpost',function (req,res) {
