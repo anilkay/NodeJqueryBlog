@@ -1,5 +1,6 @@
 var express = require('express');
 var app=express();
+var hastir=new Array();
 var bodyParser = require('body-parser')
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -17,22 +18,22 @@ app.get('/deneme',function (req,res) {
     var rowing= {rok:[]};
   var satir=new Array();
   var falan=" ";
-  var i=0;
-  var u;
-  var katir=new Array();
+  var kar;
     db.each("SELECT Id,header,article FROM blogpost", function(err, row) {
-        var kar={id:row['ID'],head:row['header'],artik:row['article']};
-
+        kar={id:row['ID'],head:row['header'],artik:row['article']};
         console.log(kar.id+kar.head+" Kar yazıldı");
         console.log(row);
-       //u= _.clone(row);
-        satir.push(u);
-           rowing.rok.push(row);
+         hastir.push(kar);
         console.log("calistim");
-
+        olaylar=true;
     });
-    res.send("<html>"+satir+satir.pop()+" "+satir.pop()+"</html>");
+       res.redirect('/deneme2');
+       // res.send("<html>" + satir + satir.pop() + " " + satir.pop() + satir.length + "</html>");
 });
+app.get('/deneme2',function (req,res) {
+    res.send("A"+hastir+" "+hastir.length+hastir.pop().artik+hastir+""+hastir.pop().artik);
+});
+
 app.get('/addpost',function (req,res) {
     res.sendFile(__dirname+'/addpost.html')
 });
