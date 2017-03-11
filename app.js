@@ -29,12 +29,14 @@ app.get('/deneme',function (req,res) {
     });
        res.redirect('/deneme2');
 });
-app.get('/deneme2',function (req,res) {
-    var content=" "
+app.get('/deneme2',function (req,res,next) {
+    var content=" ";
     hastir.forEach(function (item) {
-        content+=" <h1>"+item.id+"   "+item.head+"</h1>"+"<p>"+item.artik+"</p>";
-    })
+        content += " <h1>" + item.id + "   " + item.head + "</h1>" + "<p>" + item.artik + "</p>";
+    });
     res.send("<html>"+content+"</html>");
+    hastir=[];
+    next();
 });
 
 app.get('/addpost',function (req,res) {
