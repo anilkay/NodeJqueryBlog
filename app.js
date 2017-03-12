@@ -56,6 +56,9 @@ app.post('/add',function (req,res) {
 app.get('/post:name',function (req,res) {
     var whichpost=req.param.name;
 });
+app.get('/twit',function (req,res) {
+    res.sendFile(__dirname+"/twitterdeneme.html");
+})
 var server = require('http').createServer(app);
 server.listen(4000);
 

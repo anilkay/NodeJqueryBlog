@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Twtter deneme</title>
+    <link rel="me"
+          href="https://twitter.com/twitterdev">
+    <link rel="canonical"
+          href="/web/tweet-button">
+</head>
+<body>
+<p class="eee">Bu bir Twitter linkidir.</p>
+<form>
+<input type="text" class="name2">
+    <button type="button" class="butonlar"></button>
+</form>
+<a class="twitter-share-button"
+   id="sil"
+   href="https://twitter.com/share"
+   data-size="large"
+   data-via="Ericsson A1018"
+   data-url=http://www.cepli.blogspot.com"
+>
+    Tweet</a>
+</body>
+<script>window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+        t._e.push(f);
+    };
+
+    return t;
+}(document, "script", "twitter-wjs"));</script>
+<script>
+    $(document).ready(function () {
+        $("button").on('click',function () {
+            var ata=$(".name2").val();
+            $(".eee").text(ata);
+            $('iframe').remove();
+            // Generate new markup
+            var tweetBtn = $('<a></a>')
+                .addClass('twitter-share-button')
+                .attr('href', 'http://twitter.com/share')
+                .attr('data-url', 'http://test.com')
+                .attr('data-text',ata);
+            $('form').append(tweetBtn);
+            twttr.widgets.load();
+            //var twit=$(".twitter-widget-0");
+           //twit.attr("data-text",ata);
+        });
+    });
+</script>
+<script
+        src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+<script>document.getElementById("eee").innerHTML="Bir şeyler yaz"</script>
+</html>
