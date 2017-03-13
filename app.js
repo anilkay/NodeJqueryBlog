@@ -60,6 +60,6 @@ app.get('/twit',function (req,res) {
     res.sendFile(__dirname+"/twitterdeneme.html");
 })
 var server = require('http').createServer(app);
-server.listen(4000);
+server.listen(4001);
 
 console.log("Connecting 3000 port");

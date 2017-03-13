@@ -9,14 +9,36 @@
           href="https://twitter.com/twitterdev">
     <link rel="canonical"
           href="/web/tweet-button">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        form {
+            align:left;
+        }
+        input {
+            display:block;
+            margin-bottom: 12px;
+        }
+        .twitter-share-button3 {
+            display: none;
+        }
+        .eklenecek {
+            align:center;
+        }
+    </style>
 </head>
 <body>
 <p class="eee">Bu bir Twitter linkidir.</p>
 <form>
-<input type="text" class="name2">
-    <button type="button" class="butonlar"></button>
+<input type="text" class="name2" placeholder="Twit metni">
+    <input type="text" class="url" placeholder="Eklmek İstediğiniz link"/>
+    <input type="text" class="hasteg" placeholder="Hashtagler"/>
+    <input type="text" class="viar" placeholder="Via"/>
+    <input type="text" class="iliski" placeholder="Related"/>
+    <button type="button" class="butonlar btn btn-danger ">Tweet Tuşunu Hazırla</button>
 </form>
-<a class="twitter-share-button"
+<a class="twitter-share-button3"
    id="sil"
    href="https://twitter.com/share"
    data-size="large"
@@ -24,6 +46,7 @@
    data-url=http://www.cepli.blogspot.com"
 >
     Tweet</a>
+<divc class="eklenecek"> </divc>
 </body>
 <script>window.twttr = (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0],
@@ -45,6 +68,10 @@
     $(document).ready(function () {
         $("button").on('click',function () {
             var ata=$(".name2").val();
+            var hash=$(".hasteg").val();
+            var urll=$(".url").val();
+            var via=$(".viar").val();
+            var relate=$(".iliski").val();
             $(".eee").text(ata);
             $('iframe').remove();
             // Generate new markup
@@ -52,8 +79,13 @@
                 .addClass('twitter-share-button')
                 .attr('href', 'http://twitter.com/share')
                 .attr('data-url', 'http://test.com')
+                .attr('data-size','large')
+                .attr('data-hashtags',hash)
+                .attr("data-url","http://"+urll)
+                .attr("data-via",via)
+                .attr("data-related",relate)
                 .attr('data-text',ata);
-            $('form').append(tweetBtn);
+            $('.eklenecek').append(tweetBtn);
             twttr.widgets.load();
             //var twit=$(".twitter-widget-0");
            //twit.attr("data-text",ata);
@@ -64,5 +96,6 @@
         src="https://code.jquery.com/jquery-3.1.1.js"
         integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
-<script>document.getElementById("eee").innerHTML="Bir şeyler yaz"</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
 </html>
